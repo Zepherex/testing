@@ -65,8 +65,13 @@ void loop()                            //do the following things forever
     }
 
     Serial.println("Closed");
-    while(sonar.ping_cm()<25)
-      ;
+    while(1){
+       delay(100);
+      if (sonar.ping_cm()>25)
+        break;
+      else
+        continue;
+    }
 
     Serial.println("Pick up complete");
     toggle = DROPOFF;
@@ -93,8 +98,13 @@ void loop()                            //do the following things forever
     }
 
     Serial.println("Closed");
-    while(sonar.ping_cm()<25)
-      ;
+    while(1){
+      delay(100);
+      if (sonar.ping_cm()>25)
+        break;
+      else
+        continue;
+    }
 
     Serial.println("Drop off complete");
     toggle = PICKUP;
