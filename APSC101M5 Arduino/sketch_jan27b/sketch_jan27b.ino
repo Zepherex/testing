@@ -44,7 +44,7 @@ void loop()                            //do the following things forever
 */
 
 
-  if (DISTANCE_IN_CM < 25 && DISTANCE_IN_CM != 0 && toggle == PICKUP){
+  if (DISTANCE_IN_CM < 30 && DISTANCE_IN_CM != 0 && toggle == PICKUP){
     Serial.println("Opening sequence initiated for pickup");
     pos = 179;
     myservo.write(pos);
@@ -56,7 +56,7 @@ void loop()                            //do the following things forever
       delay(15);                       // waits 15ms for the servo to reach the position
     }
     
-    delay(3000);
+    delay(5000);
     Serial.println("Closing");
     
     for (; pos <= 180; pos += 2) { // goes from 180 degrees to 0 degrees
@@ -67,7 +67,7 @@ void loop()                            //do the following things forever
     Serial.println("Closed");
     while(1){
        delay(100);
-      if (sonar.ping_cm()>25)
+      if (sonar.ping_cm()>30)
         break;
       else
         continue;
@@ -76,12 +76,11 @@ void loop()                            //do the following things forever
     Serial.println("Pick up complete");
     toggle = DROPOFF;
   }
-  else if (DISTANCE_IN_CM < 25 && DISTANCE_IN_CM != 0 && toggle == DROPOFF){
+  else if (DISTANCE_IN_CM < 30 && DISTANCE_IN_CM != 0 && toggle == DROPOFF){
     Serial.println("Opening sequence initiated for drop off");
     pos = 179;
     myservo.write(pos);
     
-    delay(1000);
     Serial.println("Opening");
     
     for (; pos >= 0; pos -= 2) { // goes from 0 degrees to 180 degrees
@@ -89,7 +88,7 @@ void loop()                            //do the following things forever
       delay(15);                       // waits 15ms for the servo to reach the position
     }
     
-    delay(3000);
+    delay(5000);
     Serial.println("Closing");
     
     for (; pos <= 180; pos += 2) { // goes from 180 degrees to 0 degrees
@@ -100,7 +99,7 @@ void loop()                            //do the following things forever
     Serial.println("Closed");
     while(1){
       delay(100);
-      if (sonar.ping_cm()>25)
+      if (sonar.ping_cm()>30)
         break;
       else
         continue;
